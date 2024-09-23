@@ -29,6 +29,11 @@ class Sight_Elementor_Helper {
 	 */
 	public function handler_custom_posts() {
 
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( 'You do not have permission to perform this action.' );
+			die();
+		}
+
 		$posts = array();
 
 		$more = false;
@@ -69,8 +74,14 @@ class Sight_Elementor_Helper {
 	public function handler_post_title() {
 		$post_id = sanitize_text_field( $_REQUEST['post_id'] );
 
-		if ( $post_id ) {
-			echo esc_html( get_the_title( $post_id ) );
+		if ( $post_id && get_post_status( $post_id ) ) {
+			if ( current_user_can( 'read_post', $post_id ) ) {
+				echo esc_html( get_the_title( $post_id ) );
+			} else {
+				wp_send_json_error( 'You do not have permission to view this post.' );
+			}
+		} else {
+			wp_send_json_error( 'Post not found.' );
 		}
 
 		die();

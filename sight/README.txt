@@ -3,7 +3,7 @@ Tags: portfolio, gallery, image, projects, responsive
 Requires at least: 4.0
 Tested up to: 6.6
 Requires PHP: 5.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Contributors: codesupplyco
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -56,6 +56,9 @@ Get Sight now to supercharge your professional work.
 
 == Changelog ==
 
+= 1.1.3 =
+* Improved plugin security
+
 = 1.1.2 =
 * Added compatibility with WordPress 6.6
 
@@ -75,22 +78,22 @@ Get Sight now to supercharge your professional work.
 * Added compatibility with WordPress 5.9
 
 = 1.0.6 =
-* Fixed Offset Settings.
+* Fixed Offset Settings
 
 = 1.0.5 =
-* Improved Video Background.
+* Improved Video Background
 
 = 1.0.4 =
-* Improved Video Settings.
+* Improved Video Settings
 
 = 1.0.3 =
-* Improved thumbnail overlay.
+* Improved thumbnail overlay
 
 = 1.0.2 =
-* Improved plugin security.
+* Improved plugin security
 
 = 1.0.1 =
-* Added support view more in thumbnail.
+* Added support view more in thumbnail
 
 = 1.0.0 =
-* Initial release.
+* Initial release
