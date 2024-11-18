@@ -16,10 +16,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/class-sight.php:57
-msgid "Sight"
-msgstr ""
-
 #: core/core-plugin-functions.php:167
 msgid "Full"
 msgstr ""

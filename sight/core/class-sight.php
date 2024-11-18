@@ -47,14 +47,13 @@ if ( ! class_exists( 'Sight_Portfolio' ) ) {
 			}
 
 			// Get plugin data.
-			$plugin_data = get_plugin_data( SIGHT_PATH . 'sight.php' );
+			$plugin_data = get_plugin_data( SIGHT_PATH . 'sight.php', false, false );
 
 			// Vars.
 			$this->version = $plugin_data['Version'];
 
 			// Settings.
 			$this->settings = array(
-				'name'    => esc_html__( 'Sight', 'sight' ),
 				'version' => $plugin_data['Version'],
 			);
 

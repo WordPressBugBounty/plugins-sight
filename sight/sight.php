@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Sight – Professional Image Gallery and Portfolio
  * Description:       Beautiful responsive galleries and portfolio of your work.
- * Version:           1.1.3
+ * Version:           1.1.4
  * Author:            Code Supply Co.
  * Author URI:        https://codesupply.co
  * License:           GPL-2.0+
