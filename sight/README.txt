@@ -3,7 +3,7 @@ Tags: portfolio, gallery, image, projects, responsive
 Requires at least: 4.0
 Tested up to: 6.7
 Requires PHP: 5.4
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 Contributors: codesupplyco
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,9 @@ Sight isn't just a plugin — it's designed to work with you as a partner to hel
 Get Sight now to supercharge your professional work.
 
 == Changelog ==
+
+= 1.1.5 =
+* Fixed "sight/widget/fields/meta/before" hook
 
 = 1.1.4 =
 * Added compatibility with WordPress 6.7

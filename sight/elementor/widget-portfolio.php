@@ -282,7 +282,7 @@ class Sight_Widget_Portfolio extends Widget_Base {
 			)
 		);
 
-		do_action( 'sight/widget/fields/meta/after', $this );
+		do_action( 'sight/widget/fields/meta/before', $this );
 
 		$this->add_control(
 			'meta_title',
