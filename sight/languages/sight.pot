@@ -1,4 +1,4 @@
-# Copyright (C) 2024 sight
+# Copyright (C) 2025 sight
 # This file is distributed under the same license as the sight package.
 msgid ""
 msgstr ""
