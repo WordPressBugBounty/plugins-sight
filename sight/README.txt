@@ -1,7 +1,7 @@
 === Sight – Professional Image Gallery and Portfolio ===
 Tags: portfolio, gallery, image, projects, responsive
 Requires at least: 4.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.4
 Stable tag: 1.1.6
 Contributors: codesupplyco
@@ -58,7 +58,6 @@ Get Sight now to supercharge your professional work.
 
 = 1.1.6 =
 * Added compatibility with WordPress 6.8
-
 
 = 1.1.5 =
 * Fixed "sight/widget/fields/meta/before" hook
