@@ -3,7 +3,7 @@ Tags: portfolio, gallery, image, projects, responsive
 Requires at least: 4.0
 Tested up to: 6.9
 Requires PHP: 5.4
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 Contributors: codesupplyco
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,10 @@ Sight isn't just a plugin — it's designed to work with you as a partner to hel
 Get Sight now to supercharge your professional work.
 
 == Changelog ==
+
+= 1.1.7 =
+* Migrated all custom blocks to Block API version 3 for iframe editor compatibility.
+* Replaced dynamic DOM style injection with inline React styles for iframe editor support.
 
 = 1.1.6 =
 * Added compatibility with WordPress 6.8

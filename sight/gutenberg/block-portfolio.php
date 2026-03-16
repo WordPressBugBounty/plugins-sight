@@ -496,6 +496,7 @@ class Sight_Block_Portfolio {
 		register_block_type(
 			'sight/portfolio',
 			array(
+				'api_version'     => 3,
 				'attributes'      => $this->block_attributes(),
 				'editor_script'   => 'sight-block-portfolio',
 				'render_callback' => array( $this, 'block_render_callback' ),

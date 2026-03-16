@@ -48,9 +48,11 @@ const {
 
 const {
 	InspectorControls,
-} = wp.editor;
+	useBlockProps,
+} = wp.blockEditor;
 
 registerBlockType('sight/portfolio', {
+	apiVersion: 3,
 	title: sightBlockConfig.name,
 	icon: <RawHTML>{ sightBlockConfig.icon }</RawHTML>,
 	category: sightBlockConfig.category,
@@ -79,8 +81,9 @@ registerBlockType('sight/portfolio', {
 		const panelColor      = applyFilters( 'sight.colorSettings.fields', null, props, config );
 
 		// Render.
+		const blockProps = useBlockProps( { className: 'sight-component-custom-blocks' } );
 		return (
-			<div className="sight-component-custom-blocks">
+			<div { ...blockProps }>
 				<Disabled>
 					<ServerSideRender
 						block="sight/portfolio"
