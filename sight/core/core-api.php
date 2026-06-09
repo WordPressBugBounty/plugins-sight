@@ -5,6 +5,10 @@
  * @package Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Alias of sight_portfolio()->has_setting()
  *
@@ -48,7 +52,7 @@ function sight_get_setting( $name, $value = null ) {
 	}
 
 	// Filter.
-	$value = apply_filters( "canvas_settings_{$name}", $value );
+	$value = apply_filters( "sight_settings_{$name}", $value );
 
 	return $value;
 }

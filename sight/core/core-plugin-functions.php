@@ -7,6 +7,10 @@
  * @package Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'sight_doing_request' ) ) {
 	/**
 	 * Determines whether the current request is a WordPress REST or Ajax request.
@@ -26,7 +30,9 @@ if ( ! function_exists( 'sight_is_context_editor' ) ) {
 	 * Determines whether the current request is from WordPress Editor.
 	 */
 	function sight_is_context_editor() {
-		if ( isset( $_REQUEST['context'] ) && 'edit' === $_REQUEST['context'] ) { // Input var ok; sanitization ok.
+		$context = filter_input( INPUT_GET, 'context', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( 'edit' === $context ) {
 			return true;
 		}
 	}
@@ -221,29 +227,22 @@ if ( ! function_exists( 'sight_get_the_excerpt' ) ) {
 	 * @param bool   $break_words Break words or not.
 	 */
 	function sight_get_the_excerpt( $id = null, $length = 80, $etc = '&hellip;', $break_words = false ) {
-		global $wpdb;
 
 		if ( ! $id ) {
 			$id = get_the_ID();
 		}
 
-		$excerpt = $wpdb->get_var(
-			$wpdb->prepare(
-				"SELECT post_excerpt FROM {$wpdb->posts} WHERE ID = %d",
-				$id
-			)
-		);
+		$post = get_post( $id );
+
+		if ( ! $post ) {
+			return '';
+		}
+
+		$excerpt = $post->post_excerpt;
 
 		if ( ! $excerpt ) {
 			// If excerpt is empty, fallback to post content.
-			$content = $wpdb->get_var(
-				$wpdb->prepare(
-					"SELECT post_content FROM {$wpdb->posts} WHERE ID = %d",
-					$id
-				)
-			);
-
-			$content = strip_shortcodes( $content );
+			$content = strip_shortcodes( $post->post_content );
 			$content = str_replace( ']]>', ']]&gt;', $content );
 			$excerpt = wp_trim_words( $content, $length, $etc );
 		}

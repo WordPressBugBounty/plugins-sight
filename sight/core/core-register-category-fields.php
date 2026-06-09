@@ -8,6 +8,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Class Register Fields
  */
@@ -106,12 +110,12 @@ class Sight_Category_Fields {
 		}
 
 		// if our nonce isn't there, or we can't verify it, bail.
-		if ( ! isset( $_POST['sight_category'] ) || ! wp_verify_nonce( $_POST['sight_category'], 'category_options' ) ) { // Input var ok; sanitization ok.
+		if ( ! isset( $_POST['sight_category'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['sight_category'] ) ), 'category_options' ) ) {
 			return;
 		}
 
-		if ( isset( $_POST['sight_featured_image'] ) ) { // Input var ok; sanitization ok.
-			$sight_featured_image = sanitize_text_field( $_POST['sight_featured_image'] ); // Input var ok; sanitization ok.
+		if ( isset( $_POST['sight_featured_image'] ) ) {
+			$sight_featured_image = sanitize_text_field( wp_unslash( $_POST['sight_featured_image'] ) );
 
 			update_term_meta( $term_id, 'sight_featured_image', $sight_featured_image );
 		}

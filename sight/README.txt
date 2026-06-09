@@ -1,14 +1,14 @@
 === Sight – Professional Image Gallery and Portfolio ===
 Tags: portfolio, gallery, image, projects, responsive
 Requires at least: 4.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 Contributors: codesupplyco
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Introducing Sight — a fast & simple way to create professional looking portfolios and neatly stunning image and video galleries — all with zero coding knowledge
+Beautiful, responsive image galleries and portfolios. Showcase your work with stunning galleries, no coding required.
 
 == Description ==
 
@@ -55,6 +55,12 @@ Sight isn't just a plugin — it's designed to work with you as a partner to hel
 Get Sight now to supercharge your professional work.
 
 == Changelog ==
+
+= 1.1.8 =
+* Improved plugin security: direct file access protection, request input sanitization, and nonce verification on the Elementor editor AJAX endpoints.
+* Improved performance by caching post excerpt lookups.
+* Coding standards and WordPress Plugin Check compliance improvements.
+* Added compatibility with WordPress 7.0.
 
 = 1.1.7 =
 * Migrated all custom blocks to Block API version 3 for iframe editor compatibility.

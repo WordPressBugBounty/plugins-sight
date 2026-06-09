@@ -86,6 +86,7 @@ class Sight_Control_Custom_Post extends Base_Data_Control {
 			'cpConfig',
 			array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'sight_custom_post' ),
 			)
 		);
 

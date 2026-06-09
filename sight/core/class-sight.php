@@ -92,19 +92,6 @@ if ( ! class_exists( 'Sight_Portfolio' ) ) {
 		}
 
 		/**
-		 * This function will safely define a constant
-		 *
-		 * @param string $name  The name.
-		 * @param mixed  $value The value.
-		 */
-		public function define( $name, $value = true ) {
-
-			if ( ! defined( $name ) ) {
-				define( $name, $value );
-			}
-		}
-
-		/**
 		 * Returns true if has setting.
 		 *
 		 * @param string $name The name.

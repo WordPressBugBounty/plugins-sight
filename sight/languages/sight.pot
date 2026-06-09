@@ -16,123 +16,152 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/core-plugin-functions.php:167
+#: core/block-renderer-controller.php:50
+msgid "Unique registered name for the block."
+msgstr ""
+
+#. translators: %s is the name of the block
+#: core/block-renderer-controller.php:62
+msgid "Attributes for %s block"
+msgstr ""
+
+#: core/block-renderer-controller.php:69
+msgid "ID of the post context."
+msgstr ""
+
+#: core/block-renderer-controller.php:109
+msgid "Sorry, you are not allowed to read blocks as this user."
+msgstr ""
+
+#: core/block-renderer-controller.php:99
+msgid "Sorry, you are not allowed to read blocks of this post."
+msgstr ""
+
+#: core/block-renderer-controller.php:145
+msgid "Invalid block."
+msgstr ""
+
+#: core/block-renderer-controller.php:172
+msgid "The rendered block."
+msgstr ""
+
+#: core/core-plugin-functions.php:173
 msgid "Full"
 msgstr ""
 
-#: core/core-plugin-functions.php:488
+#: core/core-plugin-functions.php:487
 msgid "View on YouTube"
 msgstr ""
 
-#: core/core-register-category-fields.php:36, core/core-register-category-fields.php:66
+#: core/core-register-category-fields.php:40, core/core-register-category-fields.php:70
 msgid "Featured Image"
 msgstr ""
 
-#: core/core-register-category-fields.php:38, core/core-register-category-fields.php:69
+#: core/core-register-category-fields.php:42, core/core-register-category-fields.php:73
 msgid "Select or upload image"
 msgstr ""
 
-#: core/core-register-category-fields.php:38, core/core-register-category-fields.php:69
+#: core/core-register-category-fields.php:42, core/core-register-category-fields.php:73
 msgid "Set image"
 msgstr ""
 
-#: core/core-register-category-fields.php:44, core/core-register-category-fields.php:84
+#: core/core-register-category-fields.php:48, core/core-register-category-fields.php:88
 msgid "Upload image"
 msgstr ""
 
-#: core/core-register-category-fields.php:45, core/core-register-category-fields.php:85
+#: core/core-register-category-fields.php:49, core/core-register-category-fields.php:89
 msgid "Remove image"
 msgstr ""
 
-#: core/core-register-category-fields.php:89
+#: core/core-register-category-fields.php:93
 msgid "This image is used in the category blocks."
 msgstr ""
 
-#: core/core-register-post-types.php:20, core/core-register-post-types.php:22, elementor/widget-portfolio.php:161
+#: core/core-register-post-types.php:24, core/core-register-post-types.php:26, elementor/widget-portfolio.php:161
 msgid "Projects"
 msgstr ""
 
-#: core/core-register-post-types.php:21
+#: core/core-register-post-types.php:25
 msgid "Project"
 msgstr ""
 
-#: core/core-register-post-types.php:23
+#: core/core-register-post-types.php:27
 msgid "Parent Project"
 msgstr ""
 
-#: core/core-register-post-types.php:24
+#: core/core-register-post-types.php:28
 msgid "All Projects"
 msgstr ""
 
-#: core/core-register-post-types.php:25, render/sight-entry.php:310
+#: core/core-register-post-types.php:29, render/sight-entry.php:314
 msgid "View Project"
 msgstr ""
 
-#: core/core-register-post-types.php:26
+#: core/core-register-post-types.php:30
 msgid "Add New Project"
 msgstr ""
 
-#: core/core-register-post-types.php:27
+#: core/core-register-post-types.php:31
 msgid "Add New"
 msgstr ""
 
-#: core/core-register-post-types.php:28
+#: core/core-register-post-types.php:32
 msgid "Edit Project"
 msgstr ""
 
-#: core/core-register-post-types.php:29
+#: core/core-register-post-types.php:33
 msgid "Update Project"
 msgstr ""
 
-#: core/core-register-post-types.php:30
+#: core/core-register-post-types.php:34
 msgid "Search Project"
 msgstr ""
 
-#: core/core-register-post-types.php:31
+#: core/core-register-post-types.php:35
 msgid "Not Found"
 msgstr ""
 
-#: core/core-register-post-types.php:32
+#: core/core-register-post-types.php:36
 msgid "Not found in Trash"
 msgstr ""
 
-#: core/core-register-post-types.php:62, core/core-register-post-types.php:63, core/core-register-post-types.php:73, elementor/widget-portfolio.php:163, render/handler/post-area-projects.php:99
+#: core/core-register-post-types.php:66, core/core-register-post-types.php:67, core/core-register-post-types.php:77, elementor/widget-portfolio.php:163, render/handler/post-area-projects.php:111
 msgid "Categories"
 msgstr ""
 
-#: core/core-register-post-types.php:64
+#: core/core-register-post-types.php:68
 msgid "Search Categories"
 msgstr ""
 
-#: core/core-register-post-types.php:65
+#: core/core-register-post-types.php:69
 msgid "All Categories"
 msgstr ""
 
-#: core/core-register-post-types.php:66
+#: core/core-register-post-types.php:70
 msgid "View Category"
 msgstr ""
 
-#: core/core-register-post-types.php:67
+#: core/core-register-post-types.php:71
 msgid "Parent Category"
 msgstr ""
 
-#: core/core-register-post-types.php:68
+#: core/core-register-post-types.php:72
 msgid "Parent Category:"
 msgstr ""
 
-#: core/core-register-post-types.php:69
+#: core/core-register-post-types.php:73
 msgid "Edit Category"
 msgstr ""
 
-#: core/core-register-post-types.php:70
+#: core/core-register-post-types.php:74
 msgid "Update Category"
 msgstr ""
 
-#: core/core-register-post-types.php:71
+#: core/core-register-post-types.php:75
 msgid "Add New Category"
 msgstr ""
 
-#: core/core-register-post-types.php:72
+#: core/core-register-post-types.php:76
 msgid "New Types Name"
 msgstr ""
 
@@ -140,11 +169,11 @@ msgstr ""
 msgid "Custom Post"
 msgstr ""
 
-#: elementor/widget-portfolio.php:47, gutenberg/block-portfolio.php:482
+#: elementor/widget-portfolio.php:47, gutenberg/block-portfolio.php:486
 msgid "Portfolio"
 msgstr ""
 
-#: elementor/widget-portfolio.php:87, gutenberg/block-portfolio.php:31
+#: elementor/widget-portfolio.php:87, gutenberg/block-portfolio.php:35
 msgid "Standard"
 msgstr ""
 
@@ -440,38 +469,38 @@ msgstr ""
 msgid "Infinite Load"
 msgstr ""
 
-#: render/sight-entry.php:307
+#: render/sight-entry.php:311
 msgid "View Media"
 msgstr ""
 
-#: render/sight-load-more.php:84
+#: render/sight-load-more.php:110
 msgid "Load more"
 msgstr ""
 
-#: render/sight-load-more.php:85, render/sight-render.php:55
+#: render/sight-load-more.php:111, render/sight-render.php:59
 msgid "Loading"
 msgstr ""
 
-#: render/sight-render.php:52
+#: render/sight-render.php:56
 msgid "Previous"
 msgstr ""
 
-#: render/sight-render.php:53
+#: render/sight-render.php:57
 msgid "Next"
 msgstr ""
 
-#: render/sight-render.php:54
+#: render/sight-render.php:58
 msgid "Close"
 msgstr ""
 
-#: render/sight-render.php:56
+#: render/sight-render.php:60
 msgid "of"
 msgstr ""
 
-#: render/handler/post-area-none.php:17
+#: render/handler/post-area-none.php:21
 msgid "It looks like your portfolio is empty. Please add new projects to your portfolio."
 msgstr ""
 
-#: render/handler/post-area-projects.php:105
+#: render/handler/post-area-projects.php:117
 msgid "All"
 msgstr ""

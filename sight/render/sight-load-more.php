@@ -5,6 +5,32 @@
  * @package sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+if ( ! function_exists( 'sight_doing_ajax_load_more' ) ) {
+	/**
+	 * Whether the current request is the legacy admin-ajax "load more" action.
+	 *
+	 * The flag is set once the nonce has been verified in the admin-ajax handler,
+	 * and read while rendering entries so the request-only CSS class can be added
+	 * without inspecting request superglobals again downstream.
+	 *
+	 * @param bool|null $set Pass true to flag the context; null to read it.
+	 * @return bool
+	 */
+	function sight_doing_ajax_load_more( $set = null ) {
+		static $doing = false;
+
+		if ( true === $set ) {
+			$doing = true;
+		}
+
+		return $doing;
+	}
+}
+
 /**
  * Processing data query for load more
  *
@@ -150,25 +176,34 @@ function sight_portfolio_load_more_posts() {
 	}
 
 	// Set response values of ajax query.
-	if ( isset( $_POST['page'] ) && $_POST['page'] ) { // Input var ok.
-		$response['page'] = sanitize_key( $_POST['page'] ); // Input var ok; sanitization ok.
+	$page = isset( $_POST['page'] ) ? sanitize_key( wp_unslash( $_POST['page'] ) ) : '';
+	if ( $page ) {
+		$response['page'] = $page;
 	}
-	if ( isset( $_POST['posts_per_page'] ) && $_POST['posts_per_page'] ) { // Input var ok.
-		$response['posts_per_page'] = sanitize_key( $_POST['posts_per_page'] ); // Input var ok; sanitization ok.
+
+	$posts_per_page = isset( $_POST['posts_per_page'] ) ? sanitize_key( wp_unslash( $_POST['posts_per_page'] ) ) : '';
+	if ( $posts_per_page ) {
+		$response['posts_per_page'] = $posts_per_page;
 	}
-	if ( isset( $_POST['query_data'] ) && $_POST['query_data'] ) { // Input var ok.
-		$response['query_data'] = map_deep( json_decode( stripslashes( $_POST['query_data'] ), true ), 'sanitize_text_field' ); // Input var ok; sanitization ok.
+
+	$query_data = isset( $_POST['query_data'] ) ? sanitize_text_field( wp_unslash( $_POST['query_data'] ) ) : '';
+	if ( $query_data ) {
+		$response['query_data'] = map_deep( (array) json_decode( $query_data, true ), 'sanitize_text_field' );
 	}
-	if ( isset( $_POST['attributes'] ) && $_POST['attributes'] ) { // Input var ok.
-		$response['attributes'] = map_deep( json_decode( stripslashes( $_POST['attributes'] ), true ), 'sanitize_text_field' ); // Input var ok; sanitization ok.
+
+	$attributes_raw = isset( $_POST['attributes'] ) ? sanitize_text_field( wp_unslash( $_POST['attributes'] ) ) : '';
+	if ( $attributes_raw ) {
+		$response['attributes'] = map_deep( (array) json_decode( $attributes_raw, true ), 'sanitize_text_field' );
 	}
-	if ( isset( $_POST['options'] ) && $_POST['options'] ) { // Input var ok.
-		$response['options'] = map_deep( json_decode( stripslashes( $_POST['options'] ), true ), 'sanitize_text_field' ); // Input var ok; sanitization ok.
+
+	$options_raw = isset( $_POST['options'] ) ? sanitize_text_field( wp_unslash( $_POST['options'] ) ) : '';
+	if ( $options_raw ) {
+		$response['options'] = map_deep( (array) json_decode( $options_raw, true ), 'sanitize_text_field' );
 	}
 
 	// Set Query Vars.
 	$query_vars = array_merge(
-		(array) $response['query_data']['query_vars'],
+		(array) ( isset( $response['query_data']['query_vars'] ) ? $response['query_data']['query_vars'] : array() ),
 		array(
 			'is_sight_query' => true,
 			'paged'          => (int) $response['page'],
@@ -177,37 +212,33 @@ function sight_portfolio_load_more_posts() {
 	);
 
 	// Supportfolio filtering for wp authors.
-	if ( $response['query_data']['is_author'] && $query_vars['author'] ) {
+	if ( ! empty( $response['query_data']['is_author'] ) && ! empty( $query_vars['author'] ) ) {
 		$query_vars['supportfolio_filters'] = true;
 	}
 
-	$attributes = $response['attributes'];
-	$options    = $response['options'];
+	$attributes = isset( $response['attributes'] ) ? $response['attributes'] : array();
+	$options    = isset( $response['options'] ) ? $response['options'] : array();
 
 	// Get Posts.
 	ob_start();
 
-	if ( isset( $_POST['terms'] ) && $_POST['terms'] ) { // Input var ok.
-		$terms = array_map( 'sanitize_text_field', $_POST['terms'] ); // Input var ok; sanitization ok.
+	$terms = isset( $_POST['terms'] ) ? array_map( 'sanitize_text_field', wp_unslash( (array) $_POST['terms'] ) ) : array();
 
-		if ( $terms ) {
-			$query_vars['tax_query'] = array();
+	if ( $terms ) {
+		$query_vars['tax_query'] = array();
 
-			$query_vars['tax_query'][] = array(
-				'taxonomy' => 'sight-categories',
-				'field'    => 'slug',
-				'terms'    => $terms,
-			);
+		$query_vars['tax_query'][] = array(
+			'taxonomy' => 'sight-categories',
+			'field'    => 'slug',
+			'terms'    => $terms,
+		);
 
-			$query_vars['tax_query']['relation'] = 'AND';
-		}
+		$query_vars['tax_query']['relation'] = 'AND';
 	}
 
 	$the_query = new WP_Query( $query_vars );
 
-	$global_name = 'wp_query';
-
-	$GLOBALS[ $global_name ] = $the_query;
+	$GLOBALS['wp_query'] = $the_query;
 
 	sight_portfolio_load_more_query_data( 'init', $response['query_data'] );
 
@@ -266,6 +297,9 @@ function sight_portfolio_ajax_load_more() {
 
 	// Check Nonce.
 	check_ajax_referer();
+
+	// Flag the legacy admin-ajax context so entries can add the request-only class.
+	sight_doing_ajax_load_more( true );
 
 	// Get Posts.
 	$data = sight_portfolio_load_more_posts();

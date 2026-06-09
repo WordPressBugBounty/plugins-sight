@@ -8,6 +8,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Register custom post types.
  */

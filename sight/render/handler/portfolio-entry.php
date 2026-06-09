@@ -11,6 +11,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 ?>
 <article <?php $portfolio_entry->item_class(); ?>>
 	<div <?php $portfolio_entry->item_outer_class(); ?>>

@@ -8,6 +8,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The initialize block.
  */
@@ -472,7 +476,7 @@ class Sight_Block_Portfolio {
 	 * Registers a block type.
 	 */
 	public function block_register() {
-		wp_register_script( 'sight-block-portfolio', SIGHT_URL . 'gutenberg/jsx/block-portfolio.js', array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-i18n', 'wp-editor' ) );
+		wp_register_script( 'sight-block-portfolio', SIGHT_URL . 'gutenberg/jsx/block-portfolio.js', array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-i18n', 'wp-editor' ), filemtime( SIGHT_PATH . 'gutenberg/jsx/block-portfolio.js' ), true );
 
 		// Set config of block.
 		wp_localize_script(

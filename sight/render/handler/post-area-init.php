@@ -11,6 +11,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 switch ( $attributes['source'] ) {
 	case 'projects':
 		require SIGHT_PATH . 'render/handler/post-area-projects.php';

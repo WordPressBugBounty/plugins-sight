@@ -11,43 +11,59 @@
  * @package    Sight
  */
 
-$class_name = sight_portfolio_area_classes( $attributes, $options );
-
-if ( $attributes['custom_images'] && count( $attributes['custom_images'] ) > $attributes['number_items'] ) {
-	$attributes['custom_images'] = array_slice( $attributes['custom_images'], 0, $attributes['number_items'] );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
-if ( $attributes['custom_images'] ) {
-	?>
-	<div class="<?php echo esc_attr( $class_name ); ?>">
+if ( ! function_exists( 'sight_render_handler_custom' ) ) {
+	/**
+	 * Render the "custom" portfolio area.
+	 *
+	 * @param array $attributes The block attributes.
+	 * @param array $options    The block options.
+	 */
+	function sight_render_handler_custom( $attributes, $options ) {
+		$class_name = sight_portfolio_area_classes( $attributes, $options );
 
-		<div class="sight-portfolio-area__outer">
-			<div class="sight-portfolio-area__main" <?php sight_portfolio_area_main_attrs( $attributes, $options ); ?>>
-				<?php
-				// Start the Loop.
-				foreach ( $attributes['custom_images'] as $attachment_id ) {
+		if ( $attributes['custom_images'] && count( $attributes['custom_images'] ) > $attributes['number_items'] ) {
+			$attributes['custom_images'] = array_slice( $attributes['custom_images'], 0, $attributes['number_items'] );
+		}
 
-					// Get item project.
-					if ( wp_get_attachment_image( $attachment_id ) ) {
+		if ( $attributes['custom_images'] ) {
+			?>
+			<div class="<?php echo esc_attr( $class_name ); ?>">
 
-						$portfolio_entry = new Sight_Entry( $attributes, $options );
+				<div class="sight-portfolio-area__outer">
+					<div class="sight-portfolio-area__main" <?php sight_portfolio_area_main_attrs( $attributes, $options ); ?>>
+						<?php
+						// Start the Loop.
+						foreach ( $attributes['custom_images'] as $attachment_id ) {
 
-						// Set settings.
-						$portfolio_entry->attachment_id = $attachment_id;
+							// Get item project.
+							if ( wp_get_attachment_image( $attachment_id ) ) {
 
-						// Init portfolio entry.
-						$portfolio_entry->init();
+								$portfolio_entry = new Sight_Entry( $attributes, $options );
 
-						require apply_filters( 'sight_portfolio_item_path', SIGHT_PATH . 'render/handler/portfolio-entry.php', $attributes, $options, $portfolio_entry );
-					}
-				}
-				?>
+								// Set settings.
+								$portfolio_entry->attachment_id = $attachment_id;
+
+								// Init portfolio entry.
+								$portfolio_entry->init();
+
+								require apply_filters( 'sight_portfolio_item_path', SIGHT_PATH . 'render/handler/portfolio-entry.php', $attributes, $options, $portfolio_entry );
+							}
+						}
+						?>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<?php
-} else {
-	require SIGHT_PATH . 'render/handler/post-area-none.php';
+			<?php
+		} else {
+			require SIGHT_PATH . 'render/handler/post-area-none.php';
+		}
+
+		wp_reset_postdata();
+	}
 }
 
-wp_reset_postdata();
+sight_render_handler_custom( $attributes, $options );

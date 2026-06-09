@@ -7,6 +7,10 @@
 
 namespace Sight_Elementor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Elementor Control Point
  *
@@ -29,23 +33,30 @@ class Sight_Elementor_Helper {
 	 */
 	public function handler_custom_posts() {
 
+		if ( ! check_ajax_referer( 'sight_custom_post', 'nonce', false ) ) {
+			wp_send_json_error( 'Invalid nonce.' );
+		}
+
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			wp_send_json_error( 'You do not have permission to perform this action.' );
-			die();
 		}
 
 		$posts = array();
 
 		$more = false;
 
+		$search         = isset( $_REQUEST['q'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['q'] ) ) : '';
+		$paged          = isset( $_REQUEST['paged'] ) ? absint( wp_unslash( $_REQUEST['paged'] ) ) : 1;
+		$posts_per_page = isset( $_REQUEST['posts_per_page'] ) ? absint( wp_unslash( $_REQUEST['posts_per_page'] ) ) : 10;
+
 		$search_results = new \WP_Query(
 			array(
 				'post_status'         => 'publish',
 				'post_type'           => 'post',
 				'ignore_sticky_posts' => 1,
-				's'                   => sanitize_text_field( $_REQUEST['q'] ),
-				'paged'               => sanitize_text_field( $_REQUEST['paged'] ),
-				'posts_per_page'      => sanitize_text_field( $_REQUEST['posts_per_page'] ),
+				's'                   => $search,
+				'paged'               => $paged,
+				'posts_per_page'      => $posts_per_page,
 			)
 		);
 
@@ -72,7 +83,11 @@ class Sight_Elementor_Helper {
 	 * Get post title.
 	 */
 	public function handler_post_title() {
-		$post_id = sanitize_text_field( $_REQUEST['post_id'] );
+		if ( ! check_ajax_referer( 'sight_custom_post', 'nonce', false ) ) {
+			wp_send_json_error( 'Invalid nonce.' );
+		}
+
+		$post_id = isset( $_REQUEST['post_id'] ) ? absint( wp_unslash( $_REQUEST['post_id'] ) ) : 0;
 
 		if ( $post_id && get_post_status( $post_id ) ) {
 			if ( current_user_can( 'read_post', $post_id ) ) {

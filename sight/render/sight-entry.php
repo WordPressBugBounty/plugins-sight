@@ -8,6 +8,10 @@
  * @package    Sight
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! class_exists( 'Sight_Entry' ) ) {
 	/**
 	 * Create Class Portfolio Entry
@@ -478,7 +482,7 @@ if ( ! class_exists( 'Sight_Entry' ) ) {
 			// Set entry request class.
 			if ( 'standard' === $this->attributes['layout'] ) {
 
-				if ( isset( $_REQUEST['action'] ) && 'sight_portfolio_ajax_load_more' === $_REQUEST['action'] ) {
+				if ( function_exists( 'sight_doing_ajax_load_more' ) && sight_doing_ajax_load_more() ) {
 					$classes[] = 'sight-portfolio-entry-request';
 				}
 			}

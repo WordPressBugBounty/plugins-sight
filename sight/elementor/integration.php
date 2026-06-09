@@ -7,6 +7,10 @@
 
 namespace Sight_Elementor;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Class Sight_Elementor_Integraion
  */

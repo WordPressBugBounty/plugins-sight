@@ -17,7 +17,8 @@
 								posts_per_page: 10,
 								q: params.term,
 								paged: params.page || 1,
-								action: 'handler_custom_posts'
+								action: 'handler_custom_posts',
+								nonce: cpConfig.nonce
 							};
 
 							return query;
@@ -49,7 +50,8 @@
 								delay: 250,
 								data: {
 									post_id: state.text.trim(),
-									action: 'handler_post_title'
+									action: 'handler_post_title',
+									nonce: cpConfig.nonce
 								},
 								async:false
 							} ).responseText;
